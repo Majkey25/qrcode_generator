@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>QR Code Maker</h1>
+    <input type="text" id="qr-data" placeholder="Enter text or URL" />
+    <button id="generate-btn">Generate QR Code</button>
+    <div id="qrcode"></div>
+    <button id="download-btn" style="display: none;">Download QR Code</button>
+  </div>
+  <footer style="display: flex; justify-content: center; align-items: center; text-align: center;">
+    <a href="https://majkey25.github.io/Majkey25/" style="text-decoration: none; color: inherit;">
+        <p style="margin: 1;">Made by Matěj Teplý &copy; <span id="year"></span> All rights reserved.</p>
+    </a>
+</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

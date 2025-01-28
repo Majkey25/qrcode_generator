@@ -1,0 +1,132 @@
+/* Background and layout */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #212121, #1a1a1a); /* Dark gradient background */
+    color: #98FCFF; /* Light cyan text color */
+    text-align: center;
+  }
+  
+  .container {
+    background: rgba(30, 30, 30, 0.8); /* Semi-transparent dark background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #98FCFF;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 15px 0;
+    font-size: 18px;
+    background-color: #333;
+    color: #98FCFF;
+    border: 2px solid #98FCFF;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Ensure padding and borders are included in the element's total width */
+  }
+  
+  input:focus {
+    border-color: #4CAF50; /* Green focus border */
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 12px 25px;
+    background-color: #98FCFF;
+    color: #212121;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:hover {
+    background-color: #44ff00; /* Green background on hover */
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Button Focus Animation */
+  button:focus {
+    outline: none;
+    animation: bounce 0.3s ease-in-out;
+  }
+  
+  /* QR Code Container */
+  #qrcode {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* QR Code (image or canvas) */
+  #qrcode canvas, #qrcode img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Download Button */
+  #download-btn {
+    display: none;
+    padding: 12px 25px;
+    background-color: #FFC107;
+    color: #212121;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #download-btn:hover {
+    background-color: #FF5722;
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Keyframe Animation for Button Bounce */
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  footer {
+    position: fixed; /* Fixed to the bottom */
+    bottom: 0; /* Positioned at the bottom */
+    left: 0; /* Positioned to the left */
+    width: 100%; /* Width to 100% */
+    text-align: center; /* Center text */
+    padding: 0px 0; /* Padding top and bottom */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow above footer */
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center the items */
+    gap: 10px; /* Space between paragraphs */
+}  
