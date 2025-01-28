@@ -56,6 +56,9 @@ body {
     margin-top: 20px;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: block; /* Makes the button a block element */
+    margin-left: auto; /* Centers the button */
+    margin-right: auto; /* Centers the button */
   }
   
   button:hover {
@@ -90,18 +93,20 @@ body {
   #download-btn {
     display: none;
     padding: 12px 25px;
-    background-color: #FFC107;
+    background-color: #98FCFF;
     color: #212121;
-    border: none;
     border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
     margin-top: 20px;
     transition: all 0.3s ease-in-out;
+    display: block; /* Makes the button a block element */
+    margin-left: auto; /* Centers the button */
+    margin-right: auto; /* Centers the button */
   }
   
   #download-btn:hover {
-    background-color: #FF5722;
+    background-color: #44ff00;
     transform: translateY(-5px); /* Lift effect */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
   }
