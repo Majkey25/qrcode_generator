@@ -42,5 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       link.download = "qrcode.png";
       link.click();
     });
+    document.getElementById("year").textContent = new Date().getFullYear();
   });
   
