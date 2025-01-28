@@ -1,10 +1,10 @@
 // Load the QRCode library (use QRCode.js or CDN alternative)
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
     const generateBtn = document.getElementById("generate-btn");
     const downloadBtn = document.getElementById("download-btn");
     const qrContainer = document.getElementById("qrcode");
     const inputData = document.getElementById("qr-data");
+    document.getElementById("year").textContent = new Date().getFullYear();
   
     let qrCode;
   
