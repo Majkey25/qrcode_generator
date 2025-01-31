@@ -323,20 +323,19 @@ button:focus {
   }
 }
 
+/* Footer */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 5px 0;
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
+  position: fixed; /* Fixed to the bottom */
+  bottom: 0; /* Positioned at the bottom */
+  left: 0; /* Positioned to the left */
+  width: 100%; /* Width to 100% */
+  text-align: center; /* Center text */
+  padding: 0px 0; /* Padding top and bottom */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow above footer */
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Center the items */
+  gap: 10px; /* Space between paragraphs */
+}  
 /* Style for square color pickers */
 .settings input[type="color"] {
   -webkit-appearance: none;
