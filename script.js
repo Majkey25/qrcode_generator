@@ -3,68 +3,71 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadBtn = document.getElementById("download-btn");
     const qrContainer = document.getElementById("qrcode");
     const inputData = document.getElementById("qr-data");
+    const dotColor = document.getElementById("dot-color");
+    const cornerColor = document.getElementById("corner-color");
+    const bgColor = document.getElementById("bg-color");
+    const dotStyle = document.getElementById("dot-style");
+    const cornerStyle = document.getElementById("corner-style");
+    const logoUpload = document.getElementById("logo-upload");
     document.getElementById("year").textContent = new Date().getFullYear();
 
     let qrCode;
 
     generateBtn.addEventListener("click", () => {
         const data = inputData.value.trim();
-
         if (!data) {
             alert("Please enter some text or a URL!");
             return;
         }
 
-        // Clear existing QR code
+        // Clear previous QR Code
         qrContainer.innerHTML = "";
 
-        // Generate new QR code
-        qrCode = new QRCode(qrContainer, {
-            text: data,
-            width: 200,
-            height: 200,
+        // Read the uploaded logo
+        let logo = null;
+        if (logoUpload.files.length > 0) {
+            const file = logoUpload.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                logo = e.target.result;
+                generateQRCode(data, logo);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            generateQRCode(data, null);
+        }
+    });
+
+    function generateQRCode(data, logo) {
+        qrCode = new QRCodeStyling({
+            width: 300,
+            height: 300,
+            type: "svg",
+            data: data,
+            image: logo,
+            dotsOptions: {
+                color: dotColor.value,
+                type: dotStyle.value,
+            },
+            cornersSquareOptions: {
+                color: cornerColor.value,
+                type: cornerStyle.value,
+            },
+            cornersDotOptions: {
+                color: cornerColor.value,
+                type: cornerStyle.value,
+            },
+            backgroundOptions: {
+                color: bgColor.value,
+            },
         });
 
-        // Show the download button
+        qrCode.append(qrContainer);
         downloadBtn.style.display = "block";
-    });
+    }
 
     downloadBtn.addEventListener("click", () => {
         if (!qrCode) return;
-
-        const canvas = qrContainer.querySelector("canvas");
-        if (!canvas) return;
-
-        // Create a new canvas with a white background
-        const newCanvas = document.createElement("canvas");
-        const ctx = newCanvas.getContext("2d");
-
-        newCanvas.width = canvas.width;
-        newCanvas.height = canvas.height;
-
-        // Fill the new canvas with a white background
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
-
-        // Draw the original QR code onto the new canvas
-        ctx.drawImage(canvas, 0, 0);
-
-        // Convert the new canvas to an image and download
-        newCanvas.toBlob((blob) => {
-            if (!blob) return;
-
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-
-            link.href = url;
-            link.download = "qrcode.png";
-
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Cleanup the object URL to free memory
-            URL.revokeObjectURL(url);
-        }, "image/png");
+        qrCode.download({ name: "qrcode", extension: "png" });
     });
 });

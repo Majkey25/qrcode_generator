@@ -10,17 +10,52 @@
 <body>
   <div class="container">
     <h1>QR Code Generator</h1>
+
+    <!-- Input for QR Code Data -->
     <input type="text" id="qr-data" placeholder="Enter text or URL" />
+
+    <!-- Customization Options -->
+    <div class="settings">
+      <label for="dot-color">Dot Color:</label>
+      <input type="color" id="dot-color" value="#FF5733">
+      
+      <label for="corner-color">Corner Color:</label>
+      <input type="color" id="corner-color" value="#4A90E2">
+
+      <label for="bg-color">Background Color:</label>
+      <input type="color" id="bg-color" value="#FFFFFF">
+
+      <label for="dot-style">Dot Style:</label>
+      <select id="dot-style">
+        <option value="dots">Dots</option>
+        <option value="square">Square</option>
+        <option value="rounded">Rounded</option>
+      </select>
+
+      <label for="corner-style">Corner Style:</label>
+      <select id="corner-style">
+        <option value="square">Square</option>
+        <option value="extra-rounded">Extra Rounded</option>
+        <option value="dot">Dots</option>
+      </select>
+
+      <!-- Logo Upload -->
+      <label for="logo-upload">Upload Logo:</label>
+      <input type="file" id="logo-upload" accept="image/*">
+    </div>
+
     <button id="generate-btn">Generate QR Code</button>
     <div id="qrcode"></div>
     <button id="download-btn" style="display: none;">Download QR Code</button>
   </div>
+
   <footer style="display: flex; justify-content: center; align-items: center; text-align: center;">
     <a href="https://majkey25.github.io/Majkey25/" style="text-decoration: none; color: inherit;">
         <p style="margin: 1;">Made by Matěj Teplý &copy; <span id="year"></span> All rights reserved.</p>
     </a>
 </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling/lib/qr-code-styling.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
