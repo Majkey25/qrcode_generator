@@ -4,7 +4,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   margin: 0;
   background: linear-gradient(135deg, #212121, #1a1a1a);
   color: #98FCFF;
