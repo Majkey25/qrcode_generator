@@ -31,18 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     downloadBtn.addEventListener("click", () => {
-      if (!qrCode) return;
-  
-      // Convert QR code to image
-      const img = qrContainer.querySelector("img") || qrContainer.querySelector("canvas");
-      if (!img) return;
-  
-      // Create a download link
-      const link = document.createElement("a");
-      link.href = img.src;
-      link.download = "qrcode.png";
-      link.click();
-    });
+  if (!qrCode) return;
 
-  });
+  const canvas = qrContainer.querySelector("canvas");
+  if (!canvas) return;
+
+  // Convert canvas to data URL (PNG format)
+  const dataURL = canvas.toDataURL("image/png");
+
+  // Create a download link
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = "qrcode.png";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+});
   
