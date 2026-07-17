@@ -3,59 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Maker</title>
+  <meta name="description" content="Create and download a custom QR code.">
+  <title>QR Maker</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="qrcode.png" type="image/png">
 </head>
 <body>
-  <div class="container">
-    <h1>QR Code Generator</h1>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="QR Maker home">QR Maker</a>
+  </header>
 
-    <!-- Input for QR Code Data -->
-    <input type="text" id="qr-data" placeholder="Enter text or URL" />
+  <main class="workspace">
+    <section class="editor" aria-labelledby="page-title">
+      <h1 id="page-title">Create a QR code</h1>
+      <p class="intro">Enter your content, adjust the appearance, then download.</p>
 
-    <!-- Customization Options -->
-    <div class="settings">
-      <label for="dot-color">Dot Color:</label>
-      <input type="color" id="dot-color" value="#000000">
-      
-      <label for="corner-color">Corner Color:</label>
-      <input type="color" id="corner-color" value="#000000">
+      <form id="qr-form" novalidate>
+        <div class="field content-field">
+          <label for="qr-data">Text or URL</label>
+          <input
+            type="text"
+            id="qr-data"
+            placeholder="https://example.com or any text"
+            autocomplete="off"
+            required
+          >
+        </div>
 
-      <label for="bg-color">Background Color:</label>
-      <input type="color" id="bg-color" value="#FFFFFF">
+        <div class="color-grid">
+          <label class="field">
+            <span>Dot color</span>
+            <span class="color-control">
+              <input type="color" id="dot-color" value="#111111">
+              <output for="dot-color">#111111</output>
+            </span>
+          </label>
 
-      <label for="dot-style">Dot Style:</label>
-      <select id="dot-style">
-        <option value="square">Square</option>
-        <option value="dots">Dots</option>
-        <option value="rounded">Rounded</option>
-      </select>
+          <label class="field">
+            <span>Corner color</span>
+            <span class="color-control">
+              <input type="color" id="corner-color" value="#111111">
+              <output for="corner-color">#111111</output>
+            </span>
+          </label>
 
-      <label for="corner-style">Corner Style:</label>
-      <select id="corner-style">
-        <option value="square">Square</option>
-        <option value="extra-rounded">Extra Rounded</option>
-        <option value="dot">Dots</option>
-      </select>
+          <label class="field">
+            <span>Background</span>
+            <span class="color-control">
+              <input type="color" id="bg-color" value="#FFFFFF">
+              <output for="bg-color">#FFFFFF</output>
+            </span>
+          </label>
+        </div>
 
-      <!-- Logo Upload -->
-      <label for="logo-upload">Upload Logo:</label>
-      <input type="file" id="logo-upload" accept="image/*">
-    </div>
+        <div class="select-grid">
+          <div class="field">
+            <label for="dot-style">Dot style</label>
+            <select id="dot-style">
+              <option value="square">Square</option>
+              <option value="dots">Dots</option>
+              <option value="rounded">Rounded</option>
+            </select>
+          </div>
 
-    <button id="generate-btn">Generate QR Code</button>
-    <div id="qrcode"></div>
-    <button id="download-btn" style="display: none;">Download QR Code</button>
-  </div>
+          <div class="field">
+            <label for="corner-style">Corner style</label>
+            <select id="corner-style">
+              <option value="square">Square</option>
+              <option value="extra-rounded">Extra rounded</option>
+              <option value="dot">Dots</option>
+            </select>
+          </div>
+        </div>
 
-<footer style="display: flex; justify-content: center; align-items: center; text-align: center;">
-    <a href="https://majkey25.github.io/My-website-for-fun/" style="text-decoration: none; color: inherit;">
-        <p style="margin: 1;">Made by Matěj Teplý &copy; <span id="year"></span> All rights reserved.</p>
+        <div class="field logo-field">
+          <label for="logo-upload">Logo</label>
+          <input class="file-input" type="file" id="logo-upload" accept="image/*">
+          <label class="file-control" for="logo-upload">
+            <span class="file-action">Choose image</span>
+            <span id="logo-file-name">No file chosen</span>
+          </label>
+        </div>
+
+        <button class="primary-button" id="generate-btn" type="submit">Generate QR code</button>
+        <p id="form-error" class="error-message" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="preview" aria-labelledby="preview-title">
+      <h2 id="preview-title">Preview</h2>
+      <div
+        id="qrcode"
+        class="preview-stage"
+        role="img"
+        aria-label="QR code preview. No QR code generated yet."
+      >
+        <div id="empty-state" class="empty-state">
+          <img src="qrcode.png" alt="" width="88" height="88">
+          <p>Your QR code will appear here</p>
+        </div>
+      </div>
+      <p id="status-message" class="sr-only" aria-live="polite"></p>
+      <button class="download-button" id="download-btn" type="button" disabled>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download PNG
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://majkey25.github.io/My-website-for-fun/">
+      Made by Matěj Teplý &copy; <span id="year"></span> All rights reserved.
     </a>
-</footer>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling/lib/qr-code-styling.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js"
+    integrity="sha384-P7sw4KeI1SDhOs6wYFsBysIIHFqMTgG4y9vunEfL8ZuV0WhnHsh9MRu9Rso17MtY"
+    crossorigin="anonymous"
+  ></script>
   <script src="script.js"></script>
 </body>
 </html>
