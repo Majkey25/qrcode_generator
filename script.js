@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("qr-form");
     const generateBtn = document.getElementById("generate-btn");
     const downloadBtn = document.getElementById("download-btn");
+    const svgDownloadBtn = document.getElementById("download-svg-btn");
     const qrContainer = document.getElementById("qrcode");
     const emptyState = document.getElementById("empty-state");
     const statusMessage = document.getElementById("status-message");
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qrContainer.replaceChildren(emptyState);
         qrContainer.setAttribute("aria-label", "QR code preview. No QR code generated yet.");
         downloadBtn.disabled = true;
+        svgDownloadBtn.disabled = true;
         statusMessage.textContent = "";
     };
 
@@ -131,12 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (requestId !== generationId) return;
 
             const nextQrCode = new QRCodeStyling({
-                width: 300,
-                height: 300,
+                width: 2048,
+                height: 2048,
                 type: "svg",
                 data,
                 image: logo,
-                margin: 20,
+                margin: 136,
                 dotsOptions: {
                     color: options.dotColor,
                     type: options.dotStyle,
@@ -163,7 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
             qrCode = nextQrCode;
             qrContainer.setAttribute("aria-label", "Generated QR code preview.");
             downloadBtn.disabled = false;
-            statusMessage.textContent = "QR code generated. Download is ready.";
+            svgDownloadBtn.disabled = false;
+            statusMessage.textContent = "QR code generated. High-resolution download is ready.";
         } catch (error) {
             if (requestId !== generationId) return;
             resetPreview();
@@ -176,15 +179,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    downloadBtn.addEventListener("click", async () => {
+    const downloadQr = async (extension, button) => {
         if (!qrCode) return;
 
         clearError();
+        button.disabled = true;
         try {
-            await qrCode.download({ name: "qrcode", extension: "png" });
+            await qrCode.download({ name: "qrcode", extension });
         } catch (error) {
-            showError("QR code could not be downloaded. Try again.", undefined, downloadBtn);
+            showError("QR code could not be downloaded. Try again.", undefined, button);
             console.error(error);
+        } finally {
+            button.disabled = !qrCode;
         }
-    });
+    };
+
+    downloadBtn.addEventListener("click", () => downloadQr("png", downloadBtn));
+    svgDownloadBtn.addEventListener("click", () => downloadQr("svg", svgDownloadBtn));
 });
