@@ -342,6 +342,10 @@ h2 {
   background: #f6f6f7;
 }
 
+.download-button + .download-button {
+  margin-top: 12px;
+}
+
 .download-button:disabled {
   border-color: var(--border);
   color: #a8abb1;
