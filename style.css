@@ -122,7 +122,7 @@ select {
 }
 
 input::placeholder {
-  color: #8b8f96;
+  color: var(--muted);
   opacity: 1;
 }
 
@@ -358,10 +358,12 @@ footer {
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  padding-block: 20px;
 }
 
 footer a {
-  width: 100%;
   color: var(--muted);
   font-size: 14px;
   text-decoration: none;
